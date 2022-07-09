@@ -1,3 +1,6 @@
+#ifndef __ARGPARSER__HH__
+#define __ARGPARSER__HH__
+
 #include <iostream> // cout
 #include <vector> // Vector class
 #include <string> // substr, size
@@ -29,3 +32,5 @@ namespace Utilities {
 
   std::ostream& operator<<(std::ostream &os, ArgParser &obj);
 }
+
+#endif //__ARGPARSER__HH__
