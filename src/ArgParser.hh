@@ -12,9 +12,14 @@ namespace Utilities {
     ~ArgParser();
     ArgParser(const ArgParser&) = delete;
 
+    ArgParser operator=(const ArgParser&) = delete;
     void printFlags() const;
     void printFlagArgs(std::string) const;
     void printArgParser() const;
+
+    bool isFlagPresent(std::string) const;
+
+    StringVector getFlagArguments(std::string) const;
   private:
     ArgVector argVect;
 

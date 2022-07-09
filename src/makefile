@@ -8,15 +8,19 @@ LIBNAME=libutil
 
 TESTFILE=test.cc
 
-SOURCES=$(filter-out test.cpp, $(wildcard *.cc))
+SOURCES=$(wildcard *.cc)
 OBJECTS=$(patsubst %.cc, %.o,$(SOURCES))
+INCLUDES=$(wildcard *.hh) 
 
-all : create-directories $(OBJECTS)
+all : create-directories move-includes $(OBJECTS)
 	ar rcs $(LIBDIR)/$(LIBNAME).a $(OBJDIR)/*
 
 %.o : %.cc
 	$(GCC) $(FLAGS) $<
 	mv $@ $(OBJDIR)/
+
+move-includes:
+	cp $(INCLUDES) $(INCDIR)/
 
 create-directories : 
 	mkdir $(OBJDIR)

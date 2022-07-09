@@ -92,5 +92,32 @@ void Utilities::ArgParser::printArgParser() const
 
 std::ostream& Utilities::operator<<(std::ostream &os, Utilities::ArgParser &obj)
 {
+  obj.printArgParser();
   return os;
+}
+
+bool Utilities::ArgParser::isFlagPresent(std::string flag) const
+{
+  for (int i = 0; i < argVect.size(); i++) {
+    if (argVect.at(i).at(0) == flag) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+StringVector Utilities::ArgParser::getFlagArguments(std::string flag) const
+{
+  StringVector outVect;
+  if (isFlagPresent(flag)) {
+    for (int i = 0; i < argVect.size(); i++) {
+      if (argVect.at(i).at(0) == flag) {
+	StringVector tmp(argVect.at(i).begin()+1, argVect.at(i).end());
+	outVect = tmp;
+      }
+    }
+  }
+
+  return outVect;
 }
