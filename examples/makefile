@@ -2,13 +2,17 @@ GCC=g++
 CPP=c++11
 FLAGS=-std=$(CPP) -o
 LIBPATH=../lib
-INCPATH=../inc
+INCPATH=../include
 
+SOURCES = $(wildcard *.cc)
+EXECUTIBLES = $(patsubst %.cc, %.exe, $(SOURCES))
 
-argparse :
-	$(GCC) $(FLAGS) argparse.exe  -L$(LIBPATH)/ -I$(INCPATH)/ argParseExample.cc -lutil
+all : $(EXECUTIBLES)
+
+%.exe : %.cc
+	$(GCC) $(FLAGS) $@  -L$(LIBPATH)/ -I$(INCPATH)/ $< -lutil
 
 .PHONY : clean
 
 clean :
-	rm *.exe
+	rm -f *.exe *~

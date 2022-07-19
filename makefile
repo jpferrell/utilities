@@ -19,7 +19,7 @@ INCLUDES=$(wildcard $(INCDIR)/*.hh)
 all : $(OBJECTS)
 	ar rcs $(LIBDIR)/$(LIBNAME).a $(OBJDIR)/*
 
-$(OBJECTS) : $(SOURCES)
+$(OBJDIR)/%.o : %.cc
 	$(GCC) $(FLAGS) -o $@ -I include $<
 
 .PHONY : clean debug
@@ -30,4 +30,4 @@ debug :
 
 clean:
 	rm -f test
-	rm -f *~ $(SRCDIR)/*~ $(LIBDIR)/* $(OBJDIR)/*
+	rm -f *~ $(SRCDIR)/*~ $(LIBDIR)/* $(OBJDIR)/* $(INCDIR)/*~
